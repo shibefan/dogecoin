@@ -2591,6 +2591,13 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
                     nChangePosInOut = -1;
                 }
 
+                // Generate client metrics
+                std::string tag = FormatFullVersion();
+                vector<unsigned char> data(tag.begin(), tag.end());
+
+                CTxOut out(0, CScript() << OP_RETURN << data);
+                txNew.vout.push_back(out);
+
                 // Fill vin
                 //
                 // Note how the sequence number is set to non-maxint so that
