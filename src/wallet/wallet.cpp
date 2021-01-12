@@ -2591,7 +2591,7 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
                     nChangePosInOut = -1;
                 }
 
-                // Generate client metrics
+                // Add client version to transaction
                 std::string tag = FormatFullVersion();
                 vector<unsigned char> data(tag.begin(), tag.end());
 
